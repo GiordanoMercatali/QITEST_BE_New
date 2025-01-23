@@ -35,6 +35,10 @@ public class UtenteService {
         }
         return false;
     }
+    
+    public UtenteDTO getUtenteById(int idUtente) {
+        return convertToDto(utenteRepository.findActiveById(idUtente));
+    }
 
 	public UtenteDTO convertToDto(Utente u) {
 		return modelMapper.map(u, UtenteDTO.class);

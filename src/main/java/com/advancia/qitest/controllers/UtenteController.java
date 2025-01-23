@@ -32,10 +32,17 @@ public class UtenteController {
 		return ResponseEntity.ok(listUtenti);
 	}
 
-//	@GetMapping("/{idUtente}")
+	@GetMapping("api/utenti/{idUtente}")
+	public ResponseEntity<UtenteDTO> getUtenteById(@PathVariable int idUtente) {
+		UtenteDTO utente = utenteService.getUtenteById(idUtente);
+		return ResponseEntity.ok(utente);
+	}
+//	@GetMapping("api/utenti/{idUtente}")
 //	public UtenteDTO getUtenteById(@PathVariable int idUtente) {
 //		return utenteService.getUtenteById(idUtente);
 //	}
+	
+	
 //
 //	@GetMapping("/email/{email}")
 //	public UtenteDTO getUtenteByEmail(@PathVariable String email) {

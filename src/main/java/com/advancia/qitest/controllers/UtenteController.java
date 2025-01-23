@@ -65,7 +65,7 @@ public class UtenteController {
 //	}
 //
 //	// WORKS
-	@DeleteMapping("/{idUtente}")
+	@DeleteMapping("api/utenti/{idUtente}")
 	public boolean eliminaUtente(@PathVariable int idUtente) {
 		return utenteService.eliminaUtente(idUtente);
 	}

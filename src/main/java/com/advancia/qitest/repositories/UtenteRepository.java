@@ -24,6 +24,13 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer>, CrudRe
     @Query("SELECT u FROM Utente u WHERE u.idUtente = :idUtente AND u.fDeleted = false")
     Utente findActiveById(Integer idUtente);
 
-    @Query("SELECT u FROM Utente u WHERE u.email LIKE %:username% AND u.fDeleted = false")
-    List<Utente> searchByUsername(String username);
+    @Query("SELECT u FROM Utente u " +
+    	       "WHERE (:tNome IS NULL OR u.tNome LIKE %:tNome%) " +
+    	       "AND (:tCognome IS NULL OR u.tCognome LIKE %:tCognome%) " +
+    	       "AND (:email IS NULL OR u.email LIKE %:email%) " +
+    	       "AND u.fDeleted = false")
+    List<Utente> searchByFilter(
+    		@Param("tNome") String tNome,
+    		@Param("tCognome") String tCognome,
+    		@Param("email") String email);
 }

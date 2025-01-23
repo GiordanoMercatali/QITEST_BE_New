@@ -20,9 +20,22 @@ public class UtenteService {
 	private UtenteRepository utenteRepository;
 
 	public List<UtenteDTO> findAllUtenti() {
-        return utenteRepository.findAll().stream().map(this::convertToDto).toList();
-    }
+		return utenteRepository.findAll().stream().map(this::convertToDto).toList();
+	}
+
+	public List<UtenteDTO> searchUtenti(String tNome, String tCognome, String email) {
+		return utenteRepository.searchByFilter(tNome, tCognome, email).stream().map(this::convertToDto).toList();
+	}
 	
+    public boolean eliminaUtente(int idUtente) {
+        Utente utente = utenteRepository.findById(idUtente).orElse(null);
+        if (utente != null) {
+            utenteRepository.delete(utente);
+            return true;
+        }
+        return false;
+    }
+
 	public UtenteDTO convertToDto(Utente u) {
 		return modelMapper.map(u, UtenteDTO.class);
 	}

@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.advancia.qitest.dtos.UtenteDTO;
@@ -62,14 +65,17 @@ public class UtenteController {
 //	}
 //
 //	// WORKS
-//	@DeleteMapping("/{idUtente}")
-//	public boolean eliminaUtente(@PathVariable int idUtente) {
-//		return utenteService.eliminaUtente(idUtente);
-//	}
-//
+	@DeleteMapping("/{idUtente}")
+	public boolean eliminaUtente(@PathVariable int idUtente) {
+		return utenteService.eliminaUtente(idUtente);
+	}
+
 //	// WORKS
-//	@GetMapping("/search")
-//	public List<UtenteDTO> searchUtenti(@RequestParam String username) {
-//		return utenteService.searchUtenti(username);
-//	}
+	@GetMapping("api/utenti/search")
+	public List<UtenteDTO> searchUtenti(
+			@RequestParam(required = false) String tNome,
+			@RequestParam(required = false) String tCognome,
+			@RequestParam(required = false) String email) {
+		return utenteService.searchUtenti(tNome, tCognome, email);
+	}
 }

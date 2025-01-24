@@ -10,7 +10,7 @@ import com.advancia.qitest.dtos.DomandaDTO;
 import com.advancia.qitest.dtos.EsameDTO;
 import com.advancia.qitest.dtos.EsecuzioneEsameDTO;
 import com.advancia.qitest.dtos.EsecuzioneTestDTO;
-import com.advancia.qitest.dtos.QuizDTO;
+import com.advancia.qitest.dtos.UtenteTestDTO;
 import com.advancia.qitest.dtos.RispostaDTO;
 import com.advancia.qitest.dtos.RispostaUtenteDTO;
 import com.advancia.qitest.dtos.TestDTO;
@@ -64,7 +64,7 @@ public class ModelMapperConfig {
 			protected void configure() {
 			}
 		});
-		modelMapper.addMappings(new PropertyMap<UtenteTest, QuizDTO>() {
+		modelMapper.addMappings(new PropertyMap<UtenteTest, UtenteTestDTO>() {
 			@Override
 			protected void configure() {
 			}

@@ -4,91 +4,101 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class TestDTO {
-    private int idTest;
-    private Timestamp dDataInser;
-    private Timestamp dDataUpdate;
-    private int logicDeleted;
-    private String tDescrizioneTest;
-    private int tDurata;
-    private List<EsameDTO> esames;
-    private List<EsecuzioneTestDTO> esecuzioneTests;
-    private int ordine;
-    // private List<DomandaDTO> domandas;
+	private int idTest;
+	private Timestamp dDataInser;
+	private Timestamp dDataUpdate;
+	private int logicDeleted;
+	private String tDescrizioneTest;
+	private int tDurata;
+	private List<EsameDTO> esames;
 
-    public TestDTO() {
-    }
+	private List<UtenteTestDTO> utDTO;
 
-    public int getIdTest() {
-        return idTest;
-    }
+	private List<EsecuzioneTestDTO> esecuzioneTests;
+	private int ordine;
+	// private List<DomandaDTO> domandas;
 
-    public void setIdTest(int idTest) {
-        this.idTest = idTest;
-    }
+	public List<UtenteTestDTO> getUtDTO() {
+		return utDTO;
+	}
 
-    public Timestamp getdDataInser() {
-        return dDataInser;
-    }
+	public void setUtDTO(List<UtenteTestDTO> utDTO) {
+		this.utDTO = utDTO;
+	}
 
-    public void setdDataInser(Timestamp dDataInser) {
-        this.dDataInser = dDataInser;
-    }
+	public TestDTO() {
+	}
 
-    public Timestamp getdDataUpdate() {
-        return dDataUpdate;
-    }
+	public int getIdTest() {
+		return idTest;
+	}
 
-    public void setdDataUpdate(Timestamp dDataUpdate) {
-        this.dDataUpdate = dDataUpdate;
-    }
+	public void setIdTest(int idTest) {
+		this.idTest = idTest;
+	}
 
-    public int getLogicDeleted() {
-        return logicDeleted;
-    }
+	public Timestamp getdDataInser() {
+		return dDataInser;
+	}
 
-    public void setLogicDeleted(int logicDeleted) {
-        this.logicDeleted = logicDeleted;
-    }
+	public void setdDataInser(Timestamp dDataInser) {
+		this.dDataInser = dDataInser;
+	}
 
-    public String gettDescrizioneTest() {
-        return tDescrizioneTest;
-    }
+	public Timestamp getdDataUpdate() {
+		return dDataUpdate;
+	}
 
-    public void settDescrizioneTest(String tDescrizioneTest) {
-        this.tDescrizioneTest = tDescrizioneTest;
-    }
+	public void setdDataUpdate(Timestamp dDataUpdate) {
+		this.dDataUpdate = dDataUpdate;
+	}
 
-    public int gettDurata() {
-        return tDurata;
-    }
+	public int getLogicDeleted() {
+		return logicDeleted;
+	}
 
-    public void settDurata(int tDurata) {
-        this.tDurata = tDurata;
-    }
+	public void setLogicDeleted(int logicDeleted) {
+		this.logicDeleted = logicDeleted;
+	}
 
-    public List<EsameDTO> getEsames() {
-        return esames;
-    }
+	public String gettDescrizioneTest() {
+		return tDescrizioneTest;
+	}
 
-    public void setEsames(List<EsameDTO> esames) {
-        this.esames = esames;
-    }
+	public void settDescrizioneTest(String tDescrizioneTest) {
+		this.tDescrizioneTest = tDescrizioneTest;
+	}
 
-    public List<EsecuzioneTestDTO> getEsecuzioneTests() {
-        return esecuzioneTests;
-    }
+	public int gettDurata() {
+		return tDurata;
+	}
 
-    public void setEsecuzioneTests(List<EsecuzioneTestDTO> esecuzioneTests) {
-        this.esecuzioneTests = esecuzioneTests;
-    }
+	public void settDurata(int tDurata) {
+		this.tDurata = tDurata;
+	}
 
-    public int getOrdine() {
-        return ordine;
-    }
+	public List<EsameDTO> getEsames() {
+		return esames;
+	}
 
-    public void setOrdine(int ordine) {
-        this.ordine = ordine;
-    }
+	public void setEsames(List<EsameDTO> esames) {
+		this.esames = esames;
+	}
 
-    
+	public List<EsecuzioneTestDTO> getEsecuzioneTests() {
+		return esecuzioneTests;
+	}
+
+	public void setEsecuzioneTests(List<EsecuzioneTestDTO> esecuzioneTests) {
+		this.esecuzioneTests = esecuzioneTests;
+	}
+
+	public int getOrdine() {
+		return ordine;
+	}
+
+	public void setOrdine(int ordine) {
+		this.ordine = ordine;
+	}
+
 }

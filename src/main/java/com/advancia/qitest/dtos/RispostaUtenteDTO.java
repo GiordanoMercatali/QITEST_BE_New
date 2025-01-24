@@ -8,7 +8,7 @@ public class RispostaUtenteDTO {
     private UtenteDTO utente;
     private String note;
     private String testoRisposta;
-    private QuizDTO quizUtente;
+    private UtenteTestDTO quizUtente;
 
     public RispostaUtenteDTO() {
     }
@@ -69,11 +69,11 @@ public class RispostaUtenteDTO {
         this.testoRisposta = testoRisposta;
     }
 
-    public QuizDTO getQuizUtente() {
+    public UtenteTestDTO getQuizUtente() {
         return quizUtente;
     }
 
-    public void setQuizUtente(QuizDTO quizUtente) {
+    public void setQuizUtente(UtenteTestDTO quizUtente) {
         this.quizUtente = quizUtente;
     }
 

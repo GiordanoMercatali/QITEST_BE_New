@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -97,6 +98,9 @@ public class Utente implements TableObject {
 	@OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<EsecuzioneTest> esecuzioneTests;
+	
+	@OneToMany(mappedBy="utente", fetch = FetchType.LAZY)
+	private List<UtenteTest> listaUtenteTest;
 
 	public Utente() {
 	}

@@ -2,12 +2,11 @@ package com.advancia.qitest.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,12 +18,13 @@ public class UtenteTest implements TableObject {
 	@Column(name = "id_utente_quiz")
 	private int idUtenteQuiz;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "id_utente")
 	private Utente utente;
 
-	@Column(name = "id_quiz")
-	private int idQuiz;
+	@ManyToOne
+	@JoinColumn(name = "id_quiz")
+	private Test test;
 
 	@Column(name = "tipo_quiz")
 	private String tipoQuiz;
@@ -46,12 +46,12 @@ public class UtenteTest implements TableObject {
 		this.idUtenteQuiz = idUtenteQuiz;
 	}
 
-	public int getIdQuiz() {
-		return idQuiz;
+	public Test getTest() {
+		return test;
 	}
 
-	public void setIdQuiz(int idQuiz) {
-		this.idQuiz = idQuiz;
+	public void setTest(Test test) {
+		this.test = test;
 	}
 
 	public String getTipoQuiz() {

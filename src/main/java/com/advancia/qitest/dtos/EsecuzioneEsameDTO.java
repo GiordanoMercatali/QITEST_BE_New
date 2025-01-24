@@ -9,7 +9,7 @@ public class EsecuzioneEsameDTO {
     private boolean fDeleted;
     private EsameDTO esame;
     private UtenteDTO utente;
-    private QuizDTO quizUtente;
+    private UtenteTestDTO quizUtente;
 
     public EsecuzioneEsameDTO() {
     }
@@ -62,11 +62,11 @@ public class EsecuzioneEsameDTO {
         this.utente = utente;
     }
 
-    public QuizDTO getQuizUtente() {
+    public UtenteTestDTO getQuizUtente() {
         return quizUtente;
     }
 
-    public void setQuizUtente(QuizDTO quizUtente) {
+    public void setQuizUtente(UtenteTestDTO quizUtente) {
         this.quizUtente = quizUtente;
     }
     

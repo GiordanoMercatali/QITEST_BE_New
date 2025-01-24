@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class LogEventiDTO {
     private int idLogEventi;
-    private QuizDTO quiz;
+    private UtenteTestDTO quiz;
     private String messaggio;
     private Date dataInserimento;
     
@@ -19,11 +19,11 @@ public class LogEventiDTO {
         this.idLogEventi = idLogEventi;
     }
 
-    public QuizDTO getQuiz() {
+    public UtenteTestDTO getQuiz() {
         return quiz;
     }
 
-    public void setQuiz(QuizDTO quiz) {
+    public void setQuiz(UtenteTestDTO quiz) {
         this.quiz = quiz;
     }
 

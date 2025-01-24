@@ -2,14 +2,16 @@ package com.advancia.qitest.dtos;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 public class UtenteDTO {
     private int idUtente;
     private AziendaDTO azienda;
+    private List<UtenteTestDTO> utDTO;
     private String profilo;
     private Timestamp dDataInser;
     private Date dDataNascita;
-    private Timestamp dDataUpdate;
+	private Timestamp dDataUpdate;
     private boolean fDeleted;
     private String pPassword;
     private String tCapResidenza;
@@ -27,6 +29,15 @@ public class UtenteDTO {
 
     // private List<EsecuzioneTestDTO> esecuzioneTests;
 
+
+    public List<UtenteTestDTO> getUtDTO() {
+		return utDTO;
+	}
+
+	public void setUtDTO(List<UtenteTestDTO> utDTO) {
+		this.utDTO = utDTO;
+	}
+    
     public UtenteDTO() {
     }
 

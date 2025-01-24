@@ -1,15 +1,15 @@
 package com.advancia.qitest.dtos;
 
-public class QuizDTO {
+public class UtenteTestDTO {
     private int idUtenteQuiz;
     private UtenteDTO utente;
-    private int idQuiz;
+    private TestDTO test;
     private String tipoQuiz;
     private int mostraRisultati;
     private int ord;
     private boolean flagStudio;
     
-    public QuizDTO() {
+    public UtenteTestDTO() {
     }
 
     public int getIdUtenteQuiz() {
@@ -28,15 +28,15 @@ public class QuizDTO {
         this.utente = utente;
     }
 
-    public int getIdQuiz() {
-        return idQuiz;
-    }
+    public TestDTO getTest() {
+		return test;
+	}
 
-    public void setIdQuiz(int idQuiz) {
-        this.idQuiz = idQuiz;
-    }
+	public void setTest(TestDTO test) {
+		this.test = test;
+	}
 
-    public String getTipoQuiz() {
+	public String getTipoQuiz() {
         return tipoQuiz;
     }
 

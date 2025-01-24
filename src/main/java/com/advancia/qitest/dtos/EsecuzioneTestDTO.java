@@ -11,7 +11,7 @@ public class EsecuzioneTestDTO implements Comparable<EsecuzioneTestDTO> {
 	private boolean fDeleted;
 	private int tTotaleRispCorrette;
 	private TestDTO test;
-	private QuizDTO quizUtente;
+	private UtenteTestDTO quizUtente;
 	private UtenteDTO utente;
 
 	public EsecuzioneTestDTO() {
@@ -81,11 +81,11 @@ public class EsecuzioneTestDTO implements Comparable<EsecuzioneTestDTO> {
 		this.test = test;
 	}
 
-	public QuizDTO getQuizUtente() {
+	public UtenteTestDTO getQuizUtente() {
 		return quizUtente;
 	}
 
-	public void setQuizUtente(QuizDTO quizUtente) {
+	public void setQuizUtente(UtenteTestDTO quizUtente) {
 		this.quizUtente = quizUtente;
 	}
 

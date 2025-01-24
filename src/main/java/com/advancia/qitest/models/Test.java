@@ -38,6 +38,9 @@ public class Test implements Serializable,TableObject {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_test")
 	private int idTest;
+	
+	@OneToMany(mappedBy="test")
+	private List<UtenteTest> listaUtenteTest;
 
 	@Column(name="d_data_inser")
 	private Timestamp dDataInser;

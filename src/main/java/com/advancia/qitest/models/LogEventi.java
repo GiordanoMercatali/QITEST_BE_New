@@ -31,7 +31,7 @@ public class LogEventi implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "id_quiz")
-	private Quiz quiz;
+	private UtenteTest quiz;
 
 	private String messaggio;
 
@@ -55,11 +55,11 @@ public class LogEventi implements Serializable {
 		this.utente = utente;
 	}
 
-	public Quiz getQuiz() {
+	public UtenteTest getQuiz() {
 		return quiz;
 	}
 
-	public void setQuiz(Quiz quiz) {
+	public void setQuiz(UtenteTest quiz) {
 		this.quiz = quiz;
 	}
 

@@ -59,7 +59,7 @@ public class EsecuzioneTest implements Serializable,TableObject, Comparable<Esec
 	
 	@OneToOne
 	@JoinColumn(name="id_quiz")
-	private Quiz quizUtente;
+	private UtenteTest quizUtente;
 
 	@ManyToOne
 	@JsonIgnore
@@ -151,11 +151,11 @@ public class EsecuzioneTest implements Serializable,TableObject, Comparable<Esec
 		this.utente = utente;
 	}
 	
-	public Quiz getQuizUtente() {
+	public UtenteTest getQuizUtente() {
 		return quizUtente;
 	}
 
-	public void setQuizUtente(Quiz quizUtente) {
+	public void setQuizUtente(UtenteTest quizUtente) {
 		this.quizUtente = quizUtente;
 	}
 

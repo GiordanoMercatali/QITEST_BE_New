@@ -21,7 +21,7 @@ import com.advancia.qitest.models.Domanda;
 import com.advancia.qitest.models.Esame;
 import com.advancia.qitest.models.EsecuzioneEsame;
 import com.advancia.qitest.models.EsecuzioneTest;
-import com.advancia.qitest.models.Quiz;
+import com.advancia.qitest.models.UtenteTest;
 import com.advancia.qitest.models.Risposta;
 import com.advancia.qitest.models.RispostaUtente;
 import com.advancia.qitest.models.Test;
@@ -64,7 +64,7 @@ public class ModelMapperConfig {
 			protected void configure() {
 			}
 		});
-		modelMapper.addMappings(new PropertyMap<Quiz, QuizDTO>() {
+		modelMapper.addMappings(new PropertyMap<UtenteTest, QuizDTO>() {
 			@Override
 			protected void configure() {
 			}

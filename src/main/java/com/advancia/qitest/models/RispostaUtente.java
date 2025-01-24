@@ -47,17 +47,17 @@ public class RispostaUtente implements Serializable, TableObject, Comparable<Ris
 	
 	@OneToOne
 	@JoinColumn(name="id_quiz")
-	private Quiz quizUtente;
+	private UtenteTest quizUtente;
 
 	public int getIdRispostaUtente() {
 		return idRispostaUtente;
 	}
 
-	public Quiz getQuizUtente() {
+	public UtenteTest getQuizUtente() {
 		return quizUtente;
 	}
 
-	public void setQuizUtente(Quiz quizUtente) {
+	public void setQuizUtente(UtenteTest quizUtente) {
 		this.quizUtente = quizUtente;
 	}
 

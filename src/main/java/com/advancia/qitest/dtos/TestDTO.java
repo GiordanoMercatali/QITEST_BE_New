@@ -12,18 +12,18 @@ public class TestDTO {
 	private int tDurata;
 	private List<EsameDTO> esames;
 
-	private List<UtenteTestDTO> utDTO;
+	private List<UtenteTestDTO> utentetestDTO;
 
 	private List<EsecuzioneTestDTO> esecuzioneTests;
 	private int ordine;
 	// private List<DomandaDTO> domandas;
 
 	public List<UtenteTestDTO> getUtDTO() {
-		return utDTO;
+		return utentetestDTO;
 	}
 
-	public void setUtDTO(List<UtenteTestDTO> utDTO) {
-		this.utDTO = utDTO;
+	public void setUtDTO(List<UtenteTestDTO> utentetestDTO) {
+		this.utentetestDTO = utentetestDTO;
 	}
 
 	public TestDTO() {

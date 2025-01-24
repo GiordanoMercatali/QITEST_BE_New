@@ -7,7 +7,7 @@ import java.util.List;
 public class UtenteDTO {
     private int idUtente;
     private AziendaDTO azienda;
-    private List<UtenteTestDTO> utDTO;
+    private List<UtenteTestDTO> utentetestDTO;
     private String profilo;
     private Timestamp dDataInser;
     private Date dDataNascita;
@@ -31,11 +31,11 @@ public class UtenteDTO {
 
 
     public List<UtenteTestDTO> getUtDTO() {
-		return utDTO;
+		return utentetestDTO;
 	}
 
-	public void setUtDTO(List<UtenteTestDTO> utDTO) {
-		this.utDTO = utDTO;
+	public void setUtDTO(List<UtenteTestDTO> utentetestDTO) {
+		this.utentetestDTO = utentetestDTO;
 	}
     
     public UtenteDTO() {

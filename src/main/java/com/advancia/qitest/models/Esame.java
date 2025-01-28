@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,18 +16,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-/**
- * The persistent class for the esame database table.
- * 
- */
 @Entity
 @Table(name = "Esame")
-@NamedQuery(name = "Esame.findAll", query = "SELECT e FROM Esame e")
-public class Esame implements Serializable, TableObject {
+public class Esame implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -33,9 +30,11 @@ public class Esame implements Serializable, TableObject {
 	private int idEsame;
 
 	@Column(name = "d_data_ins")
+	@CreationTimestamp
 	private Timestamp dDataIns;
 
 	@Column(name = "d_data_upd")
+	@UpdateTimestamp
 	private Timestamp dDataUpd;
 
 	@Column(name = "f_deleted")
@@ -111,9 +110,4 @@ public class Esame implements Serializable, TableObject {
 		this.esecuzioneEsami = esecuzioneEsami;
 	}
 
-	/*
-	 * public List<Utente> getUtentes() { return this.utentes; }
-	 * 
-	 * public void setUtentes(List<Utente> utentes) { this.utentes = utentes; }
-	 */
 }

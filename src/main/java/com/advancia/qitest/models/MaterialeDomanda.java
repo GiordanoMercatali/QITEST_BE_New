@@ -14,39 +14,38 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "materiale_domanda")
-public class MaterialeDomanda implements Serializable,TableObject {
-	
+public class MaterialeDomanda implements Serializable {
 
 	private static final long serialVersionUID = -6526820699723201872L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	
+
 	@OneToOne
-	@JoinColumn(name ="id_domanda")
+	@JoinColumn(name = "id_domanda")
 	private Domanda domanda;
-	
+
 	@Lob
 	@Column(name = "materiale_file")
 	private byte[] materialeFile;
-	
+
 	@Column(name = "materiale_testuale")
 	private String materialeTestuale;
-	
+
 	@Column(name = "tipo_file")
 	private String tipoFile;
-	
+
 	@Column(name = "titolo")
 	private String titolo;
-	
+
 	@Column(name = "descrizione")
 	private String descrizione;
-	
+
 	@Column(name = "flag_eliminato")
 	private boolean flagEliminato;
-	
+
 	@Column(name = "ordine")
 	private int ordine;
 
@@ -121,7 +120,5 @@ public class MaterialeDomanda implements Serializable,TableObject {
 	public void setMaterialeFile(byte[] materialeFile) {
 		this.materialeFile = materialeFile;
 	}
-	
-	
 
 }

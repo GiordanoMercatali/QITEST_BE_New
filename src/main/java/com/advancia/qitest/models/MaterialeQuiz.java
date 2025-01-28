@@ -2,8 +2,6 @@ package com.advancia.qitest.models;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "materiale_quiz")
-public class MaterialeQuiz implements Serializable, TableObject {
+public class MaterialeQuiz implements Serializable {
 
 	private static final long serialVersionUID = 8600021728411620734L;
 
@@ -25,7 +23,6 @@ public class MaterialeQuiz implements Serializable, TableObject {
 	@Column(name = "id")
 	private int id;
 
-	@JsonIgnoreProperties({ "domandas", "esecuzioneTests", "esames" })
 	@OneToOne
 	@JoinColumn(name = "id_quiz")
 	private Test test;

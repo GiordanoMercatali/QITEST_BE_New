@@ -1,6 +1,5 @@
 package com.advancia.qitest.models;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Column;
@@ -10,16 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "esecuzione_esame")
-@NamedQuery(name = "EsecuzioneEsame.findAll", query = "SELECT e FROM EsecuzioneEsame e")
-public class EsecuzioneEsame implements Serializable, TableObject {
-	private static final long serialVersionUID = 1L;
-
+public class EsecuzioneEsame {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_esecuzione_esame;
@@ -106,16 +101,9 @@ public class EsecuzioneEsame implements Serializable, TableObject {
 
 	@Override
 	public String toString() {
-	    return "EsecuzioneEsame{" +
-	           "id_esecuzione_esame=" + id_esecuzione_esame +
-	           ", dDataEndEsame=" + dDataEndEsame +
-	           ", dDataIniEsame=" + dDataIniEsame +
-	           ", fDeleted=" + fDeleted +
-	           ", esame=" + esame +
-	           ", utente=" + utente +
-	           ", quizUtente=" + quizUtente +
-	           '}';
+		return "EsecuzioneEsame{" + "id_esecuzione_esame=" + id_esecuzione_esame + ", dDataEndEsame=" + dDataEndEsame
+				+ ", dDataIniEsame=" + dDataIniEsame + ", fDeleted=" + fDeleted + ", esame=" + esame + ", utente="
+				+ utente + ", quizUtente=" + quizUtente + '}';
 	}
-
 
 }

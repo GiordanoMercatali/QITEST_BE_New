@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,14 +15,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "domanda")
-@NamedQuery(name = "Domanda.findAll", query = "SELECT d FROM Domanda d")
-public class Domanda implements Serializable, TableObject {
+public class Domanda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,9 +29,11 @@ public class Domanda implements Serializable, TableObject {
 	private int idDomanda;
 
 	@Column(name = "d_data_inser")
+	@CreationTimestamp
 	private Timestamp dDataInser;
 
 	@Column(name = "d_data_update")
+	@UpdateTimestamp
 	private Timestamp dDataUpdate;
 
 	@Column(name = "f_deleted")
@@ -43,16 +45,13 @@ public class Domanda implements Serializable, TableObject {
 	@Column(name = "t_testo_domanda")
 	private String tTestoDomanda;
 
-	// bi-directional many-to-one association to TipoDomanda
 	@ManyToOne
 	@JoinColumn(name = "id_tipo_domanda")
 	private TipoDomanda tipoDomanda;
 
-	// bi-directional many-to-one association to Risposta
-	@OneToMany(mappedBy = "domanda", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "domanda")
 	private List<Risposta> rispostas;
 
-	// bi-directional many-to-many association to Test
 	@ManyToMany(mappedBy = "domandas")
 	private List<Test> tests;
 

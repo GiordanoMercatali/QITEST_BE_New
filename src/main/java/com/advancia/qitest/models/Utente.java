@@ -4,19 +4,18 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -24,22 +23,18 @@ import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "utente")
-@NamedQuery(name = "Utente.findAll", query = "SELECT u FROM Utente u")
-public class Utente implements TableObject {
+public class Utente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_utente")
 	private Integer idUtente;
 
-	@ManyToOne
-	@JoinColumn(name = "id_azienda")
-	private Azienda azienda;
-
 	@Column(name = "t_profilo")
 	private String profilo;
 
 	@Column(name = "d_data_inser")
+	@CreationTimestamp
 	private Timestamp dDataInser;
 
 	@Temporal(TemporalType.DATE)
@@ -47,12 +42,12 @@ public class Utente implements TableObject {
 	private Date dDataNascita;
 
 	@Column(name = "d_data_update")
+	@UpdateTimestamp
 	private Timestamp dDataUpdate;
 
 	@Column(name = "f_deleted")
 	private boolean fDeleted;
 
-	@JsonProperty("password")
 	@Column(name = "p_password")
 	private String pPassword;
 
@@ -71,11 +66,9 @@ public class Utente implements TableObject {
 	@Column(name = "t_codice_fiscale")
 	private String tCodiceFiscale;
 
-	@JsonProperty("cognome")
 	@Column(name = "t_cognome")
 	private String tCognome;
 
-	@JsonProperty("email")
 	@Column(name = "t_email")
 	private String email;
 
@@ -85,7 +78,6 @@ public class Utente implements TableObject {
 	@Column(name = "t_luogo_nascita")
 	private String tLuogoNascita;
 
-	@JsonProperty("nome")
 	@Column(name = "t_nome")
 	private String tNome;
 
@@ -95,12 +87,16 @@ public class Utente implements TableObject {
 	@Column(name = "t_provincia_residenza")
 	private String tProvinciaResidenza;
 
-	@OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "utente", orphanRemoval = true)
 	@JsonManagedReference
 	private List<EsecuzioneTest> esecuzioneTests;
 
-	@OneToMany(mappedBy = "utente", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "utente")
 	private List<UtenteTest> listaUtenteTest;
+
+	@ManyToOne
+	@JoinColumn(name = "id_azienda")
+	private Azienda azienda;
 
 	public Utente() {
 	}

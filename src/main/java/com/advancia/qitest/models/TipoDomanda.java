@@ -7,14 +7,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tipo_domanda")
-@NamedQuery(name = "TipoDomanda.findAll", query = "SELECT t FROM TipoDomanda t")
-public class TipoDomanda implements Serializable, TableObject {
+public class TipoDomanda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

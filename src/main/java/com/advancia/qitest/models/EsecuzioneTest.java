@@ -1,7 +1,9 @@
 package com.advancia.qitest.models;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -12,58 +14,52 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
-
-/**
- * The persistent class for the esecuzione_test database table.
- * 
- */
 @Entity
-@Table(name="esecuzione_test")
-@NamedQuery(name="EsecuzioneTest.findAll", query="SELECT e FROM EsecuzioneTest e")
-public class EsecuzioneTest implements Serializable,TableObject, Comparable<EsecuzioneTest> {
-	private static final long serialVersionUID = 1L;
+@Table(name = "esecuzione_test")
+public class EsecuzioneTest implements Comparable<EsecuzioneTest> {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_esec_test")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_esec_test")
 	private int idEsecTest;
 
-	@Column(name="d_data_end_test")
+	@Column(name = "d_data_end_test")
 	private Timestamp dDataEndTest;
 
-	@Column(name="d_data_ini_test")
+	@Column(name = "d_data_ini_test")
 	private Timestamp dDataIniTest;
 
-	@Column(name="d_data_inser")
+	@Column(name = "d_data_inser")
+	@CreationTimestamp
 	private Timestamp dDataInser;
 
-	@Column(name="d_data_update")
+	@Column(name = "d_data_update")
+	@UpdateTimestamp
 	private Timestamp dDataUpdate;
 
-	@Column(name="f_deleted")
+	@Column(name = "f_deleted")
 	private boolean fDeleted;
 
-	@Column(name="t_totale_risp_corrette")
+	@Column(name = "t_totale_risp_corrette")
 	private int tTotaleRispCorrette;
 
-	@Column(name="t_totale_risposte")
+	@Column(name = "t_totale_risposte")
 	private int tTotaleRisposte;
 
 	@ManyToOne
-	@JoinColumn(name="id_test")
+	@JoinColumn(name = "id_test")
 	private Test test;
-	
+
 	@OneToOne
-	@JoinColumn(name="id_quiz")
+	@JoinColumn(name = "id_quiz")
 	private UtenteTest quizUtente;
 
 	@ManyToOne
 	@JsonIgnore
-	@JoinColumn(name="id_utente")
+	@JoinColumn(name = "id_utente")
 	private Utente utente;
 
 	public EsecuzioneTest() {
@@ -109,7 +105,6 @@ public class EsecuzioneTest implements Serializable,TableObject, Comparable<Esec
 		this.dDataUpdate = dDataUpdate;
 	}
 
-	
 	public boolean isfDeleted() {
 		return fDeleted;
 	}
@@ -134,7 +129,6 @@ public class EsecuzioneTest implements Serializable,TableObject, Comparable<Esec
 		this.tTotaleRisposte = tTotaleRisposte;
 	}
 
-
 	public Test getTest() {
 		return this.test;
 	}
@@ -150,7 +144,7 @@ public class EsecuzioneTest implements Serializable,TableObject, Comparable<Esec
 	public void setUtente(Utente utente) {
 		this.utente = utente;
 	}
-	
+
 	public UtenteTest getQuizUtente() {
 		return quizUtente;
 	}
@@ -161,13 +155,12 @@ public class EsecuzioneTest implements Serializable,TableObject, Comparable<Esec
 
 	@Override
 	public int compareTo(EsecuzioneTest o) {
-		if(this.dDataIniTest.after(o.dDataIniTest)){
+		if (this.dDataIniTest.after(o.dDataIniTest)) {
 			return -1;
-		} else if(this.dDataIniTest.before(o.dDataIniTest)){
+		} else if (this.dDataIniTest.before(o.dDataIniTest)) {
 			return 1;
 		}
 		return 0;
 	}
-
 
 }

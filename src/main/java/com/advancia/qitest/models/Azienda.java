@@ -4,19 +4,20 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Azienda")
-@NamedQuery(name = "Azienda.findAll", query = "SELECT a FROM Azienda a")
-public class Azienda implements Serializable, TableObject {
+public class Azienda implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,9 +26,11 @@ public class Azienda implements Serializable, TableObject {
 	private int idAzienda;
 
 	@Column(name = "d_data_inser")
+	@CreationTimestamp
 	private Timestamp dDataInser;
 
 	@Column(name = "d_data_update")
+	@UpdateTimestamp
 	private Timestamp dDataUpdate;
 
 	@Column(name = "f_deleted")

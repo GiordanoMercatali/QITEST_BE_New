@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,39 +13,39 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "riposta_utente")
-public class RispostaUtente implements Serializable, TableObject, Comparable<RispostaUtente> {
+public class RispostaUtente implements Serializable, Comparable<RispostaUtente> {
 
 	private static final long serialVersionUID = 6171928664347001870L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_risposta_utente")
-	int idRispostaUtente;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="id_test")
-	Test test;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="id_risposta")
-	Risposta risposta;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="id_domanda")
-	Domanda domanda;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="id_utente")
-	Utente utente;
-	
-	@Column(name="note")
-	String note;
-	
-	@Column(name="testo_risposta")
-	String testoRisposta;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_risposta_utente")
+	private int idRispostaUtente;
+
 	@OneToOne
-	@JoinColumn(name="id_quiz")
+	@JoinColumn(name = "id_test")
+	private Test test;
+
+	@OneToOne
+	@JoinColumn(name = "id_risposta")
+	private Risposta risposta;
+
+	@OneToOne
+	@JoinColumn(name = "id_domanda")
+	private Domanda domanda;
+
+	@OneToOne
+	@JoinColumn(name = "id_utente")
+	private Utente utente;
+
+	@Column(name = "note")
+	private String note;
+
+	@Column(name = "testo_risposta")
+	private String testoRisposta;
+
+	@OneToOne
+	@JoinColumn(name = "id_quiz")
 	private UtenteTest quizUtente;
 
 	public int getIdRispostaUtente() {
@@ -115,12 +114,12 @@ public class RispostaUtente implements Serializable, TableObject, Comparable<Ris
 
 	@Override
 	public int compareTo(RispostaUtente o) {
-		if(this.idRispostaUtente < o.getIdRispostaUtente()){
+		if (this.idRispostaUtente < o.getIdRispostaUtente()) {
 			return -1;
-		} else if(this.idRispostaUtente > o.getIdRispostaUtente()){
+		} else if (this.idRispostaUtente > o.getIdRispostaUtente()) {
 			return 1;
 		}
 		return 0;
 	}
-	
+
 }

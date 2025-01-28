@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.advancia.qitest.dtos.UtenteDTO;
 import com.advancia.qitest.models.Utente;
+import com.advancia.qitest.models.UtenteTest;
 import com.advancia.qitest.repositories.UtenteRepository;
 
 @Service
@@ -20,25 +21,26 @@ public class UtenteService {
 	private UtenteRepository utenteRepository;
 
 	public List<UtenteDTO> findAllUtenti() {
-		return utenteRepository.findAll().stream().map(this::convertToDto).toList();
+		List<UtenteDTO> result = utenteRepository.findAllCruscotto();
+		return result;
 	}
 
 	public List<UtenteDTO> searchUtenti(String tNome, String tCognome, String email) {
 		return utenteRepository.searchByFilter(tNome, tCognome, email).stream().map(this::convertToDto).toList();
 	}
-	
-    public boolean eliminaUtente(int idUtente) {
-        Utente utente = utenteRepository.findById(idUtente).orElse(null);
-        if (utente != null) {
-            utenteRepository.delete(utente);
-            return true;
-        }
-        return false;
-    }
-    
-    public UtenteDTO getUtenteById(int idUtente) {
-        return convertToDto(utenteRepository.findActiveById(idUtente));
-    }
+
+	public boolean eliminaUtente(int idUtente) {
+		Utente utente = utenteRepository.findById(idUtente).orElse(null);
+		if (utente != null) {
+			utenteRepository.delete(utente);
+			return true;
+		}
+		return false;
+	}
+
+	public UtenteDTO getUtenteById(int idUtente) {
+		return convertToDto(utenteRepository.findActiveById(idUtente));
+	}
 
 	public UtenteDTO convertToDto(Utente u) {
 		return modelMapper.map(u, UtenteDTO.class);

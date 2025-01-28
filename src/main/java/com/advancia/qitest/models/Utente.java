@@ -98,8 +98,8 @@ public class Utente implements TableObject {
 	@OneToMany(mappedBy = "utente", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<EsecuzioneTest> esecuzioneTests;
-	
-	@OneToMany(mappedBy="utente", fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "utente", fetch = FetchType.LAZY)
 	private List<UtenteTest> listaUtenteTest;
 
 	public Utente() {
@@ -286,7 +286,15 @@ public class Utente implements TableObject {
 	public void setProfilo(String profilo) {
 		this.profilo = profilo;
 	}
-	
+
+	public List<UtenteTest> getListaUtenteTest() {
+		return listaUtenteTest;
+	}
+
+	public void setListaUtenteTest(List<UtenteTest> listaUtenteTest) {
+		this.listaUtenteTest = listaUtenteTest;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

@@ -66,7 +66,5 @@ public class UtenteTestDTO {
 
     public void setFlagStudio(boolean flagStudio) {
         this.flagStudio = flagStudio;
-    }
-
-    
+    }   
 }

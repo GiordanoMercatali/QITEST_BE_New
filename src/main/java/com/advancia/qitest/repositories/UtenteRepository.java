@@ -7,11 +7,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.advancia.qitest.models.Utente;
+import com.advancia.qitest.repositories.utente.UtenteRepositoryCustom;
 
 import java.util.List;
 
 @Repository
-public interface UtenteRepository extends JpaRepository<Utente, Integer>, CrudRepository<Utente, Integer> {
+public interface UtenteRepository extends JpaRepository<Utente, Integer>, CrudRepository<Utente, Integer>, UtenteRepositoryCustom {
 
 	@Query("SELECT u FROM Utente u WHERE u.email = :username AND u.pPassword = :password AND u.fDeleted = false")
 	Utente findByEmailAndPassword(String username, String password);
@@ -33,4 +34,5 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer>, CrudRe
     		@Param("tNome") String tNome,
     		@Param("tCognome") String tCognome,
     		@Param("email") String email);
+
 }

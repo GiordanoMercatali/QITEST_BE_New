@@ -16,18 +16,9 @@ public class UtenteTestService {
 
 	@Autowired
 	private UtenteTestRepository utenteTestRepository;
-	
-	@Autowired
-	private ModelMapper modelMapper;
-	
-	public List<UtenteTest> getListaUtenteTest(Utente utente) {
-        return utenteTest.findByUtente(utente);
-    }
-	
-	   private UtenteTestDTO convertToDto(UtenteTest ut) {
-	        return modelMapper.map(ut, UtenteTestDTO.class);
-	    }
 
-	      
-	   
+	public List<UtenteTest> getListaUtenteTest(Utente utente) {
+		return utenteTestRepository.findByUtente(utente);
+	}
+
 }

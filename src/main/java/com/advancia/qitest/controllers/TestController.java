@@ -16,7 +16,7 @@ public class TestController {
 	@Autowired
 	private TestService testService;
 	
-	@GetMapping("api/utenti")
+	@GetMapping("api/test")
 	public ResponseEntity<List<TestDTO>> getTest() {
 		List<TestDTO> listTest = testService.findAllTestDTO();
 		return ResponseEntity.ok(listTest);

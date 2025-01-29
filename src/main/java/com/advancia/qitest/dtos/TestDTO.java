@@ -16,7 +16,6 @@ public class TestDTO {
 
 	private List<EsecuzioneTestDTO> esecuzioneTests;
 	private int ordine;
-	// private List<DomandaDTO> domandas;
 
 	public List<UtenteTestDTO> getUtDTO() {
 		return utentetestDTO;
@@ -101,4 +100,12 @@ public class TestDTO {
 		this.ordine = ordine;
 	}
 
+	public TestDTO(int idTest, String tDescrizioneTest, int tDurata, int ordine) {
+		super();
+		this.idTest = idTest;
+		this.tDescrizioneTest = tDescrizioneTest;
+		this.tDurata = tDurata;
+		this.ordine = ordine;
+	}
+	
 }

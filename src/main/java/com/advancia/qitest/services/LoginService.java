@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.advancia.qitest.models.Utente;
-import com.advancia.qitest.repositories.UtenteRepository;
+import com.advancia.qitest.repositories.utente.UtenteRepository;
 import com.advancia.qitest.utils.AuthRequest;
 
 @Service

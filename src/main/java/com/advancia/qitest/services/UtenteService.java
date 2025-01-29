@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.advancia.qitest.dtos.UtenteDTO;
 import com.advancia.qitest.models.Utente;
-import com.advancia.qitest.repositories.UtenteRepository;
+import com.advancia.qitest.repositories.utente.UtenteRepository;
 
 @Service
 @Transactional
@@ -25,9 +25,14 @@ public class UtenteService {
 		List<UtenteDTO> result = utenteRepository.findAllCruscotto();
 		return result;
 	}
+	
+	public List<Utente> findAll() {
+		List<Utente> result = utenteRepository.findAll();
+		return result;
+	}
 
 	public List<UtenteDTO> searchUtenti(String tNome, String tCognome, String email) {
-		return utenteRepository.searchByFilter(tNome, tCognome, email).stream().map(this::convertToDto).toList();
+		return utenteRepository.searchByFilter(tNome, tCognome, email);
 	}
 
 	public boolean eliminaUtente(int idUtente) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.advancia.qitest.dtos.UtenteDTO;
+import com.advancia.qitest.models.Utente;
 import com.advancia.qitest.services.UtenteService;
 
 @RestController
@@ -22,6 +23,13 @@ public class UtenteController {
 	@GetMapping("api/utenti")
 	public ResponseEntity<List<UtenteDTO>> getUtenti() {
 		List<UtenteDTO> listUtenti = utenteService.findAllUtenti();
+
+		return ResponseEntity.ok(listUtenti);
+	}
+	
+	@GetMapping("api/utentiAll")
+	public ResponseEntity<List<Utente>> getUtentiAll() {
+		List<Utente> listUtenti = utenteService.findAll();
 
 		return ResponseEntity.ok(listUtenti);
 	}

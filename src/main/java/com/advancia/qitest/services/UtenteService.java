@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.advancia.qitest.dtos.UtenteDTO;
 import com.advancia.qitest.models.Utente;
 import com.advancia.qitest.repositories.utente.UtenteRepository;
+import com.advancia.qitest.repositories.utente.UtenteRepositoryCustomImpl;
 
 @Service
 @Transactional
@@ -20,6 +21,9 @@ public class UtenteService {
 
 	@Autowired
 	private UtenteRepository utenteRepository;
+	
+//	@Autowired
+//	private UtenteRepositoryCustomImpl utenteRepoCustomImpl;
 
 	public List<UtenteDTO> findAllUtenti() {
 		List<UtenteDTO> result = utenteRepository.findAllCruscotto();

@@ -33,16 +33,16 @@ public class UtenteRepositoryCustomImpl implements UtenteRepositoryCustom {
 		str.append(" where 1=1 ");
 		Map<String, String> params = new HashMap<>();
 		if (null != tNome && !tNome.equals("")) {
-			str.append(" and u.tNome = :nome ");
-			params.put("nome", tNome);
+			str.append(" and u.tNome LIKE :nome ");
+	        params.put("nome", tNome + "%");
 		}
 		if (null != tCognome && !tCognome.equals("")) {
-			str.append(" and u.tCognome = :cognome ");
-			params.put("cognome", tCognome);
+			str.append(" and u.tCognome LIKE :cognome ");
+	        params.put("cognome", tCognome + "%");
 		}
 		if (null != email && !email.equals("")) {
-			str.append(" and u.email = :email ");
-			params.put("email", email);
+			str.append(" and u.email LIKE :email ");
+	        params.put("email", email + "%");
 		}
 		TypedQuery<UtenteDTO> query = em.createQuery(str.toString(), UtenteDTO.class);
 		params.keySet().forEach(key -> query.setParameter(key, params.get(key)));

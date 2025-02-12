@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.advancia.qitest.dtos.TestDTO;
 import com.advancia.qitest.models.Utente;
 import com.advancia.qitest.models.UtenteTest;
+
+import jakarta.persistence.TypedQuery;
 
 public interface UtenteTestRepository extends JpaRepository<UtenteTest, Integer> {
 

@@ -13,6 +13,8 @@ import com.advancia.qitest.dtos.UtenteTestDTO;
 import com.advancia.qitest.models.Utente;
 import com.advancia.qitest.models.UtenteTest;
 import com.advancia.qitest.repositories.UtenteTestRepository;
+import com.advancia.qitest.repositories.test.TestRepository;
+import com.advancia.qitest.repositories.utente.UtenteRepository;
 
 @Service
 @Transactional
@@ -23,6 +25,12 @@ public class UtenteTestService {
 
 	@Autowired
 	private UtenteTestRepository utRepository;
+	
+	@Autowired
+	private UtenteRepository utenteRepository;
+	
+	@Autowired
+	private TestRepository testRepository;
 
 	public List<UtenteTest> getListaUtenteTest(Utente utente) {
 		return utRepository.findByUtente(utente);
@@ -41,4 +49,13 @@ public class UtenteTestService {
 		return utRepository.save(utenteTest);
 	}
 
+    
+    public UtenteTest convertToEntity(UtenteTestDTO utDTO) {
+    	UtenteTest ut = new UtenteTest();
+		ut.setUtente(utenteRepository.findUtenteById(utDTO.getIdUtente()));
+		ut.setTest(testRepository.findTestById(utDTO.getIdTest()));
+		ut.setTipoQuiz("T");
+		return ut;
+		
+	}
 }

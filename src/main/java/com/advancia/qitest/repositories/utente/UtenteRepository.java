@@ -21,6 +21,6 @@ public interface UtenteRepository
 	List<Utente> findAllByAziendaIdAndFDeletedFalse(@Param("idAzienda") Integer idAzienda);
 
 	@Query("SELECT u FROM Utente u WHERE u.idUtente = :idUtente AND u.fDeleted = false")
-	Utente findActiveById(Integer idUtente);	
+	Utente findUtenteById(Integer idUtente);	
 
 }

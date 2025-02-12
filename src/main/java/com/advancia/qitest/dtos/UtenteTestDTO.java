@@ -2,8 +2,8 @@ package com.advancia.qitest.dtos;
 
 public class UtenteTestDTO {
     private int idUtenteQuiz;
-    private UtenteDTO utente;
-    private TestDTO test;
+    private int idUtente;
+    private int idTest;
     private String tipoQuiz;
     private int mostraRisultati;
     private int ord;
@@ -19,22 +19,6 @@ public class UtenteTestDTO {
     public void setIdUtenteQuiz(int idUtenteQuiz) {
         this.idUtenteQuiz = idUtenteQuiz;
     }
-
-    public UtenteDTO getUtente() {
-        return utente;
-    }
-
-    public void setUtente(UtenteDTO utente) {
-        this.utente = utente;
-    }
-
-    public TestDTO getTest() {
-		return test;
-	}
-
-	public void setTest(TestDTO test) {
-		this.test = test;
-	}
 
 	public String getTipoQuiz() {
         return tipoQuiz;
@@ -66,5 +50,21 @@ public class UtenteTestDTO {
 
     public void setFlagStudio(boolean flagStudio) {
         this.flagStudio = flagStudio;
-    }   
+    }
+
+	public int getIdUtente() {
+		return idUtente;
+	}
+
+	public void setIdUtente(int idUtente) {
+		this.idUtente = idUtente;
+	}
+
+	public int getIdTest() {
+		return idTest;
+	}
+
+	public void setIdTest(int idTest) {
+		this.idTest = idTest;
+	}   
 }

@@ -48,7 +48,7 @@ public class UtenteService {
 	}
 
 	public UtenteDTO getUtenteById(int idUtente) {
-		return convertToDto(utenteRepository.findActiveById(idUtente));
+		return convertToDto(utenteRepository.findUtenteById(idUtente));
 	}
 
 	public UtenteDTO convertToDto(Utente u) {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.advancia.qitest.dtos.UtenteTestDTO;
 import com.advancia.qitest.models.UtenteTest;
 import com.advancia.qitest.services.UtenteTestService;
 
@@ -22,10 +23,19 @@ public class UtenteTestController {
 //		return ResponseEntity.ok(utList);
 //	}
 	
-	@PostMapping("api/create/utenteTest")
-	public ResponseEntity<UtenteTest> creaUtenteTest(@RequestBody UtenteTest utenteTest) {
-		UtenteTest utNuovo = utService.salvaUtenteTest(utenteTest);
-		return new ResponseEntity<>(utNuovo, HttpStatus.CREATED);
+//	@PostMapping(path = "api/create/utenteTest", consumes = "application/json")
+//	public ResponseEntity<UtenteTest> creaUtenteTest(@RequestBody UtenteTest utenteTest) {
+//		// conversione delle stringhe nel formdata in interi -- da inserire --
+//		UtenteTest utNuovo = utService.salvaUtenteTest(utenteTest);
+//		return new ResponseEntity<>(utNuovo, HttpStatus.CREATED);
+//	}
+	
+	@PostMapping(path = "api/create/utenteTest", consumes = "application/json")
+	public ResponseEntity<UtenteTest> creaUtenteTest(@RequestBody UtenteTestDTO utenteTestDTO) {
+		
+		UtenteTest utNuovo = utService.convertToEntity(utenteTestDTO);
+				
+		return new ResponseEntity<>(utService.salvaUtenteTest(utNuovo), HttpStatus.CREATED);
 	}
 
 }

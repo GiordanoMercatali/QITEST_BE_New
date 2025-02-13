@@ -18,6 +18,6 @@ public interface TestRepository extends JpaRepository<Test, Integer>, TestReposi
 	List<TestDTO> findByLogicDeleted(int logicDeleted);
 	
 	@Query("SELECT t FROM Test t WHERE t.idTest = :idTest")
-	Test findTestById(Integer idTest);
+	Test findTestById(int[] is);
 
 }

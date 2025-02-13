@@ -3,7 +3,7 @@ package com.advancia.qitest.dtos;
 public class UtenteTestDTO {
     private int idUtenteQuiz;
     private int idUtente;
-    private int idTest;
+    private int[] idTest;
     private String tipoQuiz;
     private int mostraRisultati;
     private int ord;
@@ -60,11 +60,11 @@ public class UtenteTestDTO {
 		this.idUtente = idUtente;
 	}
 
-	public int getIdTest() {
+	public int[] getIdTest() {
 		return idTest;
 	}
 
-	public void setIdTest(int idTest) {
+	public void setIdTest(int[] idTest) {
 		this.idTest = idTest;
 	}   
 }

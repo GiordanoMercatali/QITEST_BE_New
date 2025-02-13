@@ -45,8 +45,9 @@ public class UtenteTestService {
 		return modelMapper.map(utenteTest, UtenteTestDTO.class);
 	}
 	
-	public UtenteTest salvaUtenteTest(UtenteTest utenteTest) {
-		return utRepository.save(utenteTest);
+	public UtenteTest salvaUtenteTest(UtenteTestDTO utenteTestDTO) {
+		UtenteTest utNuovo = convertToEntity(utenteTestDTO);
+		return utRepository.save(utNuovo);
 	}
 
     

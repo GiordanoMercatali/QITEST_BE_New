@@ -1,5 +1,7 @@
 package com.advancia.qitest.services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,47 +18,83 @@ import com.advancia.qitest.repositories.UtenteTestRepository;
 import com.advancia.qitest.repositories.test.TestRepository;
 import com.advancia.qitest.repositories.utente.UtenteRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+
 @Service
 @Transactional
 public class UtenteTestService {
-	
+
+	@PersistenceContext
+	private EntityManager em;
+
 	@Autowired
 	private ModelMapper modelMapper;
 
 	@Autowired
 	private UtenteTestRepository utRepository;
-	
+
 	@Autowired
 	private UtenteRepository utenteRepository;
-	
+
 	@Autowired
 	private TestRepository testRepository;
 
 	public List<UtenteTest> getListaUtenteTest(Utente utente) {
 		return utRepository.findByUtente(utente);
 	}
-	
+
 	public List<UtenteTestDTO> findAllTestDTO() {
 		return utRepository.findAll().stream().map(this::convertToDto).collect(Collectors.toList());
 	}
-	
+
 	private UtenteTestDTO convertToDto(UtenteTest utenteTest) {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return modelMapper.map(utenteTest, UtenteTestDTO.class);
 	}
+
+//	public UtenteTest salvaUtenteTest(UtenteTestDTO utenteTestDTO) {
+//		for (int idTest : utenteTestDTO.getIdTest()) {
+//			System.out.println("l'idTest valutato è: " + idTest);
+//			TypedQuery<Test> query = em.createQuery("SELECT t FROM test t WHERE t.idTest = :id", Test.class);
+//			query.setParameter("id", idTest);
+//			query.getResultList();
+//			System.out
+//					.println("QUERY PARAMETRIZZATA: " + query.getResultList().toString() + " " + query.getResultList());
+//		}
+//		UtenteTest utNuovo = convertToEntity(utenteTestDTO);
+//		return utRepository.save(utNuovo);
+//	}
+//
+//	public UtenteTest convertToEntity(UtenteTestDTO utDTO) {
+//		UtenteTest ut = new UtenteTest();
+//		ut.setUtente(utenteRepository.findUtenteById(utDTO.getIdUtente()));
+//		ut.setTest(testRepository.findTestsById(utDTO.getIdTest()));
+//		ut.setTipoQuiz("T");
+//		return ut;
+//	}
 	
-	public UtenteTest salvaUtenteTest(UtenteTestDTO utenteTestDTO) {
-		UtenteTest utNuovo = convertToEntity(utenteTestDTO);
-		return utRepository.save(utNuovo);
+	@Transactional
+	public UtenteTest[] salvaUtentiTest(UtenteTestDTO utDTO) {
+		UtenteTest[] utArray = convertToEntities(utDTO);
+	    List<UtenteTest> savedEntities = utRepository.saveAll(Arrays.asList(utArray));		
+	    return savedEntities.toArray(new UtenteTest[0]);
 	}
 
-    
-    public UtenteTest convertToEntity(UtenteTestDTO utDTO) {
-    	UtenteTest ut = new UtenteTest();
-		ut.setUtente(utenteRepository.findUtenteById(utDTO.getIdUtente()));
-		ut.setTest(testRepository.findTestById(utDTO.getIdTest()));
-		ut.setTipoQuiz("T");
-		return ut;
-		
+	public UtenteTest[] convertToEntities(UtenteTestDTO utDTO) {
+	    List<UtenteTest> utList = new ArrayList<>();
+	    for (int idTest : utDTO.getIdTest()) {
+	        UtenteTest ut = new UtenteTest();
+	        ut.setUtente(utenteRepository.findUtenteById(utDTO.getIdUtente()));
+	        ut.setTest(testRepository.findTestById(idTest));
+	        ut.setTipoQuiz("T");
+	        utList.add(ut);
+	        
+	        System.out.println(utDTO.getIdUtente());
+	        System.out.println(idTest);
+	    }
+	    return utList.toArray(new UtenteTest[0]);
 	}
+
+
 }

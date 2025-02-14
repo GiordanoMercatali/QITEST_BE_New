@@ -30,14 +30,20 @@ public class UtenteTestController {
 //		return new ResponseEntity<>(utNuovo, HttpStatus.CREATED);
 //	}
 	
+//	@PostMapping(path = "api/create/utenteTest", consumes = "application/json")
+//	public ResponseEntity<UtenteTest> creaUtenteTest(@RequestBody UtenteTestDTO utenteTestDTO) {
+//		
+//		
+//		//Spostare la conversione sul Service
+//		
+//				
+//		return new ResponseEntity<>(utService.salvaUtenteTest(utenteTestDTO), HttpStatus.CREATED);
+//	}
+	
 	@PostMapping(path = "api/create/utenteTest", consumes = "application/json")
-	public ResponseEntity<UtenteTest> creaUtenteTest(@RequestBody UtenteTestDTO utenteTestDTO) {
-		
-		
-		//Spostare la conversione sul Service
-		
+	public ResponseEntity<UtenteTest[]> creaUtentiTest(@RequestBody UtenteTestDTO utenteTestDTO) {		
 				
-		return new ResponseEntity<>(utService.salvaUtenteTest(utenteTestDTO), HttpStatus.CREATED);
+		return new ResponseEntity<>(utService.salvaUtentiTest(utenteTestDTO), HttpStatus.CREATED);
 	}
 
 }

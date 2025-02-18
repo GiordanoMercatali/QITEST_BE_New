@@ -12,8 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.advancia.qitest.dtos.UtenteTestDTO;
+import com.advancia.qitest.models.EsecuzioneTest;
 import com.advancia.qitest.models.Utente;
 import com.advancia.qitest.models.UtenteTest;
+import com.advancia.qitest.repositories.EsecuzioneTestRepository;
 import com.advancia.qitest.repositories.UtenteTestRepository;
 import com.advancia.qitest.repositories.test.TestRepository;
 import com.advancia.qitest.repositories.utente.UtenteRepository;
@@ -40,7 +42,11 @@ public class UtenteTestService {
 	@Autowired
 	private TestRepository testRepository;
 
-	public List<UtenteTest> getListaUtenteTest(Utente utente) {
+	@Autowired
+	private EsecuzioneTestRepository esecuzioneTestRepository;
+
+	public List<UtenteTest> getListaUtenteTestByUtenteId(Integer utenteId) {
+		Utente utente = utenteRepository.findUtenteById(utenteId);
 		return utRepository.findByUtente(utente);
 	}
 
@@ -73,28 +79,40 @@ public class UtenteTestService {
 //		ut.setTipoQuiz("T");
 //		return ut;
 //	}
-	
+
+	/**
+	 * Aggiunge i test assegnati all'utente aggiungendo i record alla tabella
+	 * utente_quiz e alla tabella esecuzione_test.
+	 * 
+	 * @param utDTO
+	 * @return
+	 */
 	@Transactional
 	public UtenteTest[] salvaUtentiTest(UtenteTestDTO utDTO) {
 		UtenteTest[] utArray = convertToEntities(utDTO);
-	    List<UtenteTest> savedEntities = utRepository.saveAll(Arrays.asList(utArray));		
-	    return savedEntities.toArray(new UtenteTest[0]);
+		List<UtenteTest> savedEntities = utRepository.saveAll(Arrays.asList(utArray));
+		List<EsecuzioneTest> listaEsecuzioneTest = new ArrayList<>();
+		for (UtenteTest ut : utArray) {
+			EsecuzioneTest et = new EsecuzioneTest();
+			et.setQuizUtente(ut);
+			et.setUtente(ut.getUtente());
+			et.setTest(ut.getTest());
+			et.setDDataUpdate(null);
+			listaEsecuzioneTest.add(et);
+		}
+		esecuzioneTestRepository.saveAll(listaEsecuzioneTest);
+		return savedEntities.toArray(new UtenteTest[0]);
 	}
 
 	public UtenteTest[] convertToEntities(UtenteTestDTO utDTO) {
-	    List<UtenteTest> utList = new ArrayList<>();
-	    for (int idTest : utDTO.getIdTest()) {
-	        UtenteTest ut = new UtenteTest();
-	        ut.setUtente(utenteRepository.findUtenteById(utDTO.getIdUtente()));
-	        ut.setTest(testRepository.findTestById(idTest));
-	        ut.setTipoQuiz("T");
-	        utList.add(ut);
-	        
-	        System.out.println(utDTO.getIdUtente());
-	        System.out.println(idTest);
-	    }
-	    return utList.toArray(new UtenteTest[0]);
+		List<UtenteTest> utList = new ArrayList<>();
+		for (int idTest : utDTO.getIdTest()) {
+			UtenteTest ut = new UtenteTest();
+			ut.setUtente(utenteRepository.findUtenteById(utDTO.getIdUtente()));
+			ut.setTest(testRepository.findTestById(idTest));
+			ut.setTipoQuiz("T");
+			utList.add(ut);
+		}
+		return utList.toArray(new UtenteTest[0]);
 	}
-
-
 }

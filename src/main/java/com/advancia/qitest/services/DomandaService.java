@@ -1,7 +1,9 @@
 package com.advancia.qitest.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +29,8 @@ public class DomandaService {
 	}
 
 	public List<DomandaDTO> findAllDomandeDTOByIdTest(String idTest) {
-		List<Domanda> domande = testRepository.findById(Integer.parseInt(idTest)).get().getDomandas();
-		System.out.println(domande);
+		// uso il set per togliere tutti i duplicati
+		Set<Domanda> domande = new HashSet<>(testRepository.findById(Integer.parseInt(idTest)).get().getDomandas());
 		List<DomandaDTO> listaDomandeDto = new ArrayList<>();
 		for (Domanda d : domande) {
 			if (!d.isfDeleted()) {
@@ -38,8 +40,8 @@ public class DomandaService {
 				tdDto.setIdTipoDomanda(td.getId_tipo_domanda());
 				tdDto.settTipoDomanda(td.getTTipoDomanda());
 
-				List<RispostaDTO> listaRisposteDto = new ArrayList<>();
-				List<Risposta> listaRisposte = d.getRispostas();
+				Set<RispostaDTO> listaRisposteDto = new HashSet<>();
+				Set<Risposta> listaRisposte = new HashSet<>(d.getRispostas());
 				for (Risposta r : listaRisposte) {
 					if (!r.isfDeleted()) {
 						RispostaDTO rDto = new RispostaDTO();
@@ -50,9 +52,8 @@ public class DomandaService {
 						listaRisposteDto.add(rDto);
 					}
 				}
-
 				domandaDto.setIdDomanda(d.getIdDomanda());
-				domandaDto.setRisposte(listaRisposteDto);
+				domandaDto.setRisposte(new ArrayList<>(listaRisposteDto));
 				domandaDto.settImagePath(d.getTImagePath());
 				domandaDto.settTestoDomanda(d.getTTestoDomanda());
 				domandaDto.setTipoDomanda(tdDto);

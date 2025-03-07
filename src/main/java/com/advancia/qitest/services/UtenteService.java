@@ -20,9 +20,6 @@ public class UtenteService {
 
 	@Autowired
 	private UtenteRepository utenteRepository;
-	
-//	@Autowired
-//	private UtenteRepositoryCustomImpl utenteRepoCustomImpl;
 
 	public List<UtenteDTO> findAllUtenti() {
 		List<UtenteDTO> result = utenteRepository.findAllCruscotto();

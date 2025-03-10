@@ -34,11 +34,18 @@ public class EsecuzioneTestService {
         return listDto;
     }
 
-    public void updateInizioEFineEsecuzioneTest(String idTest, String idUtente, Timestamp inizioTestTimestamp) {
+    public void updateFineEsecuzioneTest(String idTest, String idUtente) {
         EsecuzioneTest et = esecuzioneTestRepository.findByIdUtenteAndIdTest(Integer.parseInt(idUtente), Integer.parseInt(idTest));
         Calendar calendar = Calendar.getInstance();
         Timestamp currentTimestamp = new Timestamp(calendar.getTime().getTime());
         et.setDDataEndTest(currentTimestamp);
-        et.setDDataIniTest(inizioTestTimestamp);
+    }
+
+    public void updateInizioEsecuzioneTest(String idTest, String idUtente) {
+        EsecuzioneTest et = esecuzioneTestRepository.findByIdUtenteAndIdTest(Integer.parseInt(idUtente),
+                Integer.parseInt(idTest));
+        Calendar calendar = Calendar.getInstance();
+        Timestamp currentTimestamp = new Timestamp(calendar.getTime().getTime());
+        et.setDDataIniTest(currentTimestamp);
     }
 }

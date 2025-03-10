@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,7 +54,13 @@ public class TestController {
 	@PostMapping(value = "/api/test/{idTest}/utente/{idUtente}/risposte", consumes = "application/json")
 	public ResponseEntity<String> postRisposteTest(@PathVariable String idTest, @PathVariable String idUtente, @RequestBody RispostaTestRequest rispostaTestRequest) {
 		rispostaUtenteService.saveRisposteTest(idTest, idUtente, rispostaTestRequest.getMappaDomandaRisposta());
-		esecuzioneTestService.updateInizioEFineEsecuzioneTest(idTest, idUtente, rispostaTestRequest.getInizioTestTimestamp());
+		esecuzioneTestService.updateFineEsecuzioneTest(idTest, idUtente);
 		return ResponseEntity.ok("Test caricato correttamente");
+	}
+
+	@PatchMapping(value = "/api/test/{idTest}/utente/{idUtente}/inizio", consumes = "application/json")
+	public ResponseEntity<String> patchInizioTest(@PathVariable String idTest, @PathVariable String idUtente) {
+		esecuzioneTestService.updateInizioEsecuzioneTest(idTest, idUtente);
+		return ResponseEntity.ok("Test iniziato correttamente");
 	}
 }

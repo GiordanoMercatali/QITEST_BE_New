@@ -16,7 +16,7 @@ public class EsecuzioneTestRepositoryImpl implements EsecuzioneTestRepositoryCus
 	@PersistenceContext
 	EntityManager entityManager;
 
-	public List<Test> findAllListaTestUtenteById(String idUtente) {
+	public List<Test> findAllListaTestUtenteById(Integer idUtente) {
 		TypedQuery<Test> query = entityManager.createQuery(""
 				+ "select t "
 				+ "from EsecuzioneTest et, Test t "
@@ -29,13 +29,13 @@ public class EsecuzioneTestRepositoryImpl implements EsecuzioneTestRepositoryCus
 	}
 
 	@Override
-	public EsecuzioneTest findByIdUtenteAndIdTest(Integer idUtente, Integer idTest) {
+	public EsecuzioneTest findBydDataEndTestIsNullAndUtenteIdUtenteAndTestIdTest(Integer idUtente, Integer idTest) {
 		TypedQuery<EsecuzioneTest> query = entityManager.createQuery(""
 				+ "select et "
 				+ "from EsecuzioneTest et "
 				+ "where et.utente.idUtente = :idUtente "
 				+ "  and et.test.idTest = :idTest "
-				+ "  and et.dDataIniTest IS NULL ",
+				+ "  and et.dDataEndTest IS NULL ",
 				EsecuzioneTest.class);
 		query.setParameter("idUtente", idUtente);
 		query.setParameter("idTest", idTest);

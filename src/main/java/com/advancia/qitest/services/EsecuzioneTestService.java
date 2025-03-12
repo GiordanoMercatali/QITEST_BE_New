@@ -21,7 +21,7 @@ public class EsecuzioneTestService {
     private EsecuzioneTestRepository esecuzioneTestRepository;
 
     public List<TestDTO> findAllTestDTONonEseguitiByIdUtente(String idUtente) {
-        List<Test> list = esecuzioneTestRepository.findAllListaTestUtenteById(idUtente);
+        List<Test> list = esecuzioneTestRepository.findAllListaTestUtenteById(Integer.parseInt(idUtente));
         List<TestDTO> listDto = new ArrayList<>();
         for (Test t : list) {
             TestDTO tDto = new TestDTO();
@@ -34,15 +34,16 @@ public class EsecuzioneTestService {
         return listDto;
     }
 
-    public void updateFineEsecuzioneTest(String idTest, String idUtente) {
-        EsecuzioneTest et = esecuzioneTestRepository.findByIdUtenteAndIdTest(Integer.parseInt(idUtente), Integer.parseInt(idTest));
+    public EsecuzioneTest updateFineEsecuzioneTest(String idTest, String idUtente) {
+        EsecuzioneTest et = esecuzioneTestRepository.findBydDataEndTestIsNullAndUtenteIdUtenteAndTestIdTest(Integer.parseInt(idUtente), Integer.parseInt(idTest));
         Calendar calendar = Calendar.getInstance();
         Timestamp currentTimestamp = new Timestamp(calendar.getTime().getTime());
         et.setDDataEndTest(currentTimestamp);
+        return et;
     }
 
     public void updateInizioEsecuzioneTest(String idTest, String idUtente) {
-        EsecuzioneTest et = esecuzioneTestRepository.findByIdUtenteAndIdTest(Integer.parseInt(idUtente),
+        EsecuzioneTest et = esecuzioneTestRepository.findBydDataEndTestIsNullAndUtenteIdUtenteAndTestIdTest(Integer.parseInt(idUtente),
                 Integer.parseInt(idTest));
         Calendar calendar = Calendar.getInstance();
         Timestamp currentTimestamp = new Timestamp(calendar.getTime().getTime());

@@ -1,15 +1,20 @@
 package com.advancia.qitest.repositories;
+import java.util.List;
+
 //
 //import java.sql.Timestamp;
 //import java.util.List;
 //
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 //import org.springframework.data.jpa.repository.Query;
 //import org.springframework.data.repository.query.Param;
 //
 //import com.advancia.qitest.dtos.EsecuzioneTestDTO;
 //import com.advancia.qitest.dtos.TestDTO;
 import com.advancia.qitest.models.EsecuzioneTest;
+import com.advancia.qitest.models.Test;
 //import com.advancia.qitest.models.Test;
 //
 public interface EsecuzioneTestRepository extends JpaRepository<EsecuzioneTest, Integer>, EsecuzioneTestRepositoryCustom {

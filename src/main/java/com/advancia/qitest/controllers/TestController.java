@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.advancia.qitest.dtos.DomandaDTO;
 import com.advancia.qitest.dtos.TestDTO;
+import com.advancia.qitest.models.EsecuzioneTest;
 import com.advancia.qitest.services.DomandaService;
 import com.advancia.qitest.services.EsecuzioneTestService;
 import com.advancia.qitest.services.RispostaUtenteService;
@@ -53,8 +54,8 @@ public class TestController {
 
 	@PostMapping(value = "/api/test/{idTest}/utente/{idUtente}/risposte", consumes = "application/json")
 	public ResponseEntity<String> postRisposteTest(@PathVariable String idTest, @PathVariable String idUtente, @RequestBody RispostaTestRequest rispostaTestRequest) {
-		rispostaUtenteService.saveRisposteTest(idTest, idUtente, rispostaTestRequest.getMappaDomandaRisposta());
-		esecuzioneTestService.updateFineEsecuzioneTest(idTest, idUtente);
+		EsecuzioneTest et = esecuzioneTestService.updateFineEsecuzioneTest(idTest, idUtente);
+		rispostaUtenteService.saveRisposteTest(idTest, idUtente, rispostaTestRequest.getMappaDomandaRisposta(), et);
 		return ResponseEntity.ok("Test caricato correttamente");
 	}
 

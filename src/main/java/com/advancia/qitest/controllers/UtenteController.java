@@ -4,11 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.advancia.qitest.dtos.UtenteDTO;
 import com.advancia.qitest.models.Utente;
@@ -49,5 +45,14 @@ public class UtenteController {
 	public List<UtenteDTO> searchUtenti(@RequestParam(required = false) String tNome,
 			@RequestParam(required = false) String tCognome, @RequestParam(required = false) String email) {
 		return utenteService.searchUtenti(tNome, tCognome, email);
+	}
+
+	@PatchMapping("api/utenti/{idUtente}")
+	public ResponseEntity<UtenteDTO> patchUtenteById(@PathVariable int idUtente, @RequestBody UtenteDTO utente) {
+		UtenteDTO utenteModificato = utenteService.patchUtente(idUtente, utente);
+		if(utenteModificato == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(utenteModificato);
 	}
 }

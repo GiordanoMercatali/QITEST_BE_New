@@ -1,6 +1,7 @@
 package com.advancia.qitest.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +52,28 @@ public class UtenteService {
 	public UtenteDTO convertToDto(Utente u) {
 		return modelMapper.map(u, UtenteDTO.class);
 	}
+
+    public UtenteDTO patchUtente(Integer idUtente, UtenteDTO utente) {
+		Optional<Utente> utenteDaModificareOptional = utenteRepository.findById(idUtente);
+		if(utenteDaModificareOptional.isEmpty()) {
+			return null;
+		}
+		Utente utenteDaModificare = utenteDaModificareOptional.get();
+		if(utente.getEmail() != null) { utenteDaModificare.setEmail(utente.getEmail()); }
+		if(utente.getpPassword() != null) { utenteDaModificare.setPPassword(utente.getpPassword()); }
+		if(utente.gettNome() != null) { utenteDaModificare.setTNome(utente.gettNome()); }
+		if(utente.gettCognome() != null) { utenteDaModificare.setTCognome(utente.gettCognome()); }
+		if(utente.gettCellulare() != null) { utenteDaModificare.setTCellulare(utente.gettCellulare()); }
+		if(utente.gettProvinciaNascita() != null) { utenteDaModificare.setTProvinciaNascita(utente.gettProvinciaNascita()); }
+		if(utente.gettLuogoNascita() != null) { utenteDaModificare.setTLuogoNascita(utente.gettLuogoNascita()); }
+		if(utente.gettCittaResidenza() != null) { utenteDaModificare.setTCittaResidenza(utente.gettCittaResidenza()); }
+		if(utente.gettCivicoResidenza() != null) { utenteDaModificare.setTCivicoResidenza(utente.gettCivicoResidenza()); }
+		if(utente.gettIndirizzoResidenza() != null) { utenteDaModificare.setTIndirizzoResidenza(utente.gettIndirizzoResidenza()); }
+		if(utente.gettCapResidenza() != null) { utenteDaModificare.setTCapResidenza(utente.gettCapResidenza()); }
+		if(utente.gettProvinciaResidenza() != null) { utenteDaModificare.setTProvinciaResidenza(utente.gettProvinciaResidenza()); }
+		if(utente.gettCodiceFiscale() != null) { utenteDaModificare.setTCodiceFiscale(utente.gettCodiceFiscale()); }
+		if(utente.getdDataNascita() != null) { utenteDaModificare.setDDataNascita(utente.getdDataNascita()); }
+		utenteRepository.save(utenteDaModificare);
+		return utente;
+    }
 }
